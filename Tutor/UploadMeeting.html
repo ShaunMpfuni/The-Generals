@@ -3,33 +3,151 @@
   <head>
     <link rel="stylesheet" href="UploadMeeting.css">
   </head>
-<body>
+<body onload="validateDate()">
 
 <h3>Tutors page to upload meetings</h3>
 
 <div>
-  <form action="/action_page.php">
-    <label for="fname">Topic of the meeting:</label><br><br>
-    <input type="text" id="fname" name="firstname" placeholder="Subject..." maxlength = "100" size = "4"><br><br>
+  <form id="form" action="/">
     
+    <div class="input-control">
+    <label for="fname">Topic of the meeting:</label><br>
+    <input type="text" id="topic" name="firstname" placeholder="Subject..." maxlength = "100" size = "4"><br><br>
+    <div class="error"></div>
+    </div>
 
-    <label for="lname" id="lname">Explain the meeting:</label><br><br>
-    <textarea id="lname" name="about the meeting" placeholder = "About the meeting....." rows="6" cols="50"></textarea><br><br><br>
-
-    <label for="birthdaytime">Meeting (date and time):</label>
-    <input type="datetime-local" id="birthdaytime" name="birthdaytime"><br><br>
-
+    <div class="input-control">
+    <label for="lname" id="lname">Explain the meeting:</label><br>
+    <textarea id="meetText" name="about the meeting" placeholder = "About the meeting....." rows="6" cols="50"></textarea><br><br><br>
+    <div class="error"></div>
+    </div>
+     
+    <div class="input-control">
+    <label for="birthdaytime">Meeting (date and time):</label><br>
+    <input type="date" id="dateTime" name="birthdaytime"><br><br>
+    <div class="error"></div>
+    </div>
+     
+    <div class="input-control">
     <p>Click on the "Choose File" button to upload a file:</p>
     <input type="file" id="myFile" name="filename">
+    </div>
 
+    <div class="input-control">
     <div class="tarea-wrap">
-        <input type="text" name="sf_url" value="" autofocus="" placeholder="Paste your teams link here"  id="sf_url">
-        <a href="#" class="clear-btn"></a>
+        <input type="text" name="sf_url" value="" id="url" autofocus="" placeholder="Paste your teams link here"  id="sf_url">
+       
+        <div class="error"></div>
+    </div>
+    
     </div>
   
-    <input type="submit" value="Upload">
+    <input type="submit" onclick="validation()">
   </form>
 </div>
+<Script>
+  function validation(){
+    const form = document.getElementById('form');
+    const topic = document.getElementById('topic');
+    const meetText = document.getElementById('meetText');
+    const dateInput=document.getElementById('dateTime');
+    const url=document.getElementById('url');
+    
+
+    form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    validateInputs();
+    });
+
+    const setError = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success')
+}
+
+    const setSuccess = element => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+};
+
+const isValidtopic = topic => {
+    var red = /^[A-za-z]+$/;
+    return red.test(topic);
+}
+
+const isValidmeetText = meetText => {
+    var red = /^[A-za-z]+$/;
+    return red.test(meetText);
+}
+
+
+
+const validateInputs = () => {
+    const topicValue = topic.value;
+    const meetTextValue = meetText.value;
+    const dateTimeValue = dateTime.value;
+    const urlValue=url.value;
+   
+    
+
+    if(topicValue===''){
+     
+      setError(topic,'Topic is required');
+    }else if(!isValidtopic(topicValue)){
+      setError(topic,"Please enter charactors only");
+
+    }else{
+      setSuccess(topic);
+    }
+
+    if(meetTextValue===''){
+      setError(meetText,'You need to type message');
+    }else if(!isValidmeetText(meetTextValue)){
+      setError(meetText,"Please provide valid message");
+    }else{
+      setSuccess(meetText);
+    }
+
+    if(dateTimeValue===''){
+      setError(dateTime,'Please select date of your meeting');
+    }
+    else{
+      setSuccess(dateTime);
+    }
+
+    if(urlValue===''){
+      setError(url,'Please put teams link');
+
+    }else{
+      setSuccess(url);
+    }
+
+    
+
+    
+}
+ 
+  }
+
+  function validateDate(){
+  const dateTime=document.getElementById("dateTime").value;
+  var today=new Date().toISOString().split('T')[0];
+  document.getElementById("dateTime").setAttribute('min',today)
+ }
+
+ 
+
+ 
+
+</Script>
 
 </body>
 </html>
