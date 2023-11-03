@@ -320,7 +320,7 @@ topnav a {
   background-color: #ff0000;
 }
 
-
-
-
-
+#noMatchMessage {
+  display: none;
+  color: red;
+}

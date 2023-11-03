@@ -113,9 +113,10 @@ font-size: 1em;
 .contact-form {
 background-color: #fff;
 padding: 40px;
-width: 45%;
+width: 160%;
 padding-bottom: 20px;
 padding-top: 20px;
+margin-right: 90px;
 }
 
 .contact-form h2 {
@@ -215,3 +216,52 @@ section {
 @keyframes myOpacity{
   50%{opacity: 0;}
 }
+.input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box input {
+border: 2px solid #f0f0f0;
+border-radius: 8px;
+display: inline-block;
+font-size: 12px;
+padding: 15px;    
+width: 35%;
+margin-left: 500px;
+
+content: ' *';
+color: rgb(0, 0, 0);
+}
+
+.input-box input:focus {
+  outline: 0;
+}
+
+.input-box.success input {
+  border-color: #00bcd4;
+}
+
+.input-box.error input {
+  border-color: #ff3860;
+}
+
+.input-box .error {
+  color: #ff3860;
+  font-size: 19px;
+  height: 13px;
+}
+
+.input-box textarea:focus {
+  outline: 0;
+}
+
+.input-box.success textarea {
+  border-color: #00bcd4;
+}
+
+.input-box.error textarea {
+  border-color: #ff3860;
+}
+
+
