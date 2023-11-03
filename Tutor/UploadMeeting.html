@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="UploadMeeting.css">
+  </head>
+<body onload="validateDate()">
+
+<h3>Tutors page to upload meetings</h3>
+
+<div >
+  <form id="form" action="/">
+    
+    <div class="input-control">
+    <label for="fname">Topic of the meeting:</label><br>
+    <input type="text" id="topic" name="firstname" placeholder="Subject..." maxlength = "100" size = "4"><br>
+    <div class="error"></div>
+    </div><br>
+
+    <div class="input-control">
+    <label for="lname" id="lname">Explain the meeting:</label><br>
+    <textarea id="meetText" name="about the meeting" placeholder = "About the meeting....." rows="6" cols="50" maxlength="300"></textarea><br>
+    <div style="margin-top: 0,25rem;text-align: left;color: aliceblue;" id="counter">0</div>
+    <div class="error"></div>
+    </div><br>
+     
+    <div class="input-control">
+    <label for="birthdaytime">Meeting date </label><br>
+    <input type="date" id="dateTime" name="birthdaytime"><br>
+    <div class="error"></div>
+    </div><br>
+     
+    <div class="input-control">
+    <p>Click on the "Choose File" button to upload a file:</p>
+    <input type="file" id="myFile" name="filename">
+    </div><br><br>
+
+    <div class="input-control">
+    
+        <input type="text" name="sf_url" value="" id="url" autofocus="" placeholder="Paste your teams link here"  id="sf_url">
+       
+        <div class="error"></div>
+    
+    
+    </div><br>
+  
+    <input type="submit" onclick="validation()">
+  </form>
+</div>
+<Script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    const messageEle = document.getElementById('meetText');
+    const counterEle = document.getElementById('counter');
+    const maxLength = messageEle.getAttribute('maxlength');
+
+    counterEle.innerHTML = '0/' + maxLength;
+
+    messageEle.addEventListener('input', function (e) {
+        const target = e.target;
+        const currentLength = target.value.length;
+        counterEle.innerHTML = currentLength + '/' + maxLength;
+    });
+});
+
+  function validation(){
+    const form = document.getElementById('form');
+    const topic = document.getElementById('topic');
+    const meetText = document.getElementById('meetText');
+    const dateInput=document.getElementById('dateTime');
+    const url=document.getElementById('url');
+    
+
+    form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    validateInputs();
+    });
+
+    const setError = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success')
+}
+
+    const setSuccess = element => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+};
+
+const isValidtopic = topic => {
+    var red = /^[A-za-z]+$/;
+    return red.test(topic);
+}
+
+const isValidmeetText = meetText => {
+    var red = /^[A-za-z]+$/;
+    return red.test(meetText);
+}
+
+
+
+const validateInputs = () => {
+    const topicValue = topic.value;
+    const meetTextValue = meetText.value;
+    const dateTimeValue = dateTime.value;
+    const urlValue=url.value;
+   
+    
+
+    if(topicValue===''){
+     
+      setError(topic,'Topic is required');
+    }else if(!isValidtopic(topicValue)){
+      setError(topic,"Please enter charactors only");
+
+    }else{
+      setSuccess(topic);
+    }
+
+    if(meetTextValue===''){
+      setError(meetText,'You need to type message');
+    }else if(!isValidmeetText(meetTextValue)){
+      setError(meetText,"Please provide valid message");
+    }else{
+      setSuccess(meetText);
+    }
+
+    if(dateTimeValue===''){
+      setError(dateTime,'Please select date of your meeting');
+    }
+    else{
+      setSuccess(dateTime);
+    }
+
+    if(urlValue===''){
+      setError(url,'Please put teams link');
+
+    }else{
+      setSuccess(url);
+    }
+
+    
+
+    
+}
+ 
+  }
+
+  function validateDate(){
+  const dateTime=document.getElementById("dateTime").value;
+  var today=new Date().toISOString().split('T')[0];
+  document.getElementById("dateTime").setAttribute('min',today)
+ }
+
+ 
+
+ 
+
+</Script>
+
+</body>
+</html>
+
+
