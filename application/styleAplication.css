@@ -1,3 +1,7 @@
+
+
+
+
 body{ 
    animation: 4s ease 0s mySlide;
    font-family: Calibri, Helvetica, sans-serif;  
@@ -13,7 +17,7 @@ body{
     background-size: cover;
   }  
     
-  input[type=text], input[type=password], textarea {  
+  .input[type=text], input[type=password], input[type=checkbox], textarea {  
     width: 35%;  
     padding: 15px;  
     margin: 5px 0 22px 0;  
@@ -23,13 +27,11 @@ body{
     background: #f1f1f1;
     
       content: ' *';
-      color: red;
+      color: rgb(5, 5, 5);
     }
 
-     
-    
  
-  input[type=text]:focus, input[type=password]:focus {  
+  input[type=text]:focus, select[type=select]:focus, input[type=checkbox]:focus, input[type=password]:focus {  
     background-color: rgb(245, 243, 240);  
     outline: none;  
   }  
@@ -81,10 +83,15 @@ body{
 	font-size: 12px;
 	padding: 15px;    
 	width: 35%;
-  margin-left: 500px;
+  margin-left: 490px;
 
   content: ' *';
   color: rgb(0, 0, 0);
+}
+..box{
+  padding: 15px;
+  width: 70%;
+  height: fit-content;
 }
 
 .input-control input:focus {
@@ -102,7 +109,66 @@ body{
 .input-control .error {
     color: #ff3860;
     font-size: 19px;
-    height: 13px;
+    height: 3px;
 }
+
+
+form select {
+  
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+  display: inline-block;
+  font-size: 12px;
+  padding: 15px;    
+  width: 37%;
+  margin-left: 485px;
+
+  content: ' *';
+  color: rgb(0, 0, 0);
+   }
+
+   .form-inline {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #f0f0f0;
+    border-radius: 8px;
+    display: inline-block;
+    padding: 15px;    
+    width: 35%;
+    margin-left: 33px;
+    height: 18px;
+    background: #f1f1f1;
+  
+    content: ' *';
+    color: rgb(0, 0, 0);
+  }
+
+   
+  .form-inline label, .form-inline input {
+    display: inline-block;
+    width: auto;
+    padding-right: 15px;
+   }
+
+
+.input-control.success #genderInput {
+    border-color: #09c372;
+}
+
+.input-control.error #genderInput {
+    border-color: #ff3860;
+}
+
+.form-inline.success input {
+  border-color: #09c372;
+}
+
+.form-inline.error input {
+  border-color: #ff3860;
+}
+
+
+
+
 
   

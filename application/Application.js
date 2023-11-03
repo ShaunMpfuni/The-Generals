@@ -3,10 +3,15 @@ const FirstName = document.getElementById('FirstName');
 const MiddleName = document.getElementById('MiddleName');
 const LastName = document.getElementById('LastName');
 const IDNumber = document.getElementById('IDNumber');
+const Courses = document.getElementById('Courses');
 const Disability = document.getElementById('Disability');
+const dateInput = document.getElementById('dateInput');
+const genderInput = document.getElementById('genderInput');
+const DisabilityName = document.getElementById('DisabilityName');
 const Phone = document.getElementById('Phone');
 const CurrentAddress = document.getElementById('CurrentAddress');
 const Email = document.getElementById('Email');
+
 
 
 form.addEventListener('submit', e => {
@@ -39,12 +44,12 @@ const isValidEmail = Email => {
 }
 
 const isValidPhone = Phone => {
-    var regex = /^[1-9]\d{9}$/;
+    var regex =  /^(\+?27|0)[6-8][0-9]{8}$/;
     return regex.test(Phone);
 }
 
 const isValidIDNumber = IDNumber => {
-    var reg = /^[1-12]\d{12}$/;
+    var reg = /^(((\d{2}((0[13578]|1[02])(0[1-9]|[12]\d|3[01])|(0[13456789]|1[012])(0[1-9]|[12]\d|30)|02(0[1-9]|1\d|2[0-8])))|([02468][048]|[13579][26])0229))(( |-)(\d{4})( |-)(\d{3})|(\d{7}))/;
     return reg.test(IDNumber);
 }
 
@@ -63,16 +68,21 @@ const isValidLastName = LastName => {
 }
 
 
-
 const validateInputs = () => {
     const FirstNameValue = FirstName.value.trim();
     const MiddleNameValue = MiddleName.value.trim();
     const LastNameValue = LastName.value.trim();
     const IDNumberValue = IDNumber.value.trim();
-    const DisabilityValue = Disability.value.trim();
+    const CoursesValue = Courses.value
+    const DisabilityValue = Disability.value
+    const dateInputValue = dateInput.value.trim();
+    const genderInputValue = genderInput.value
+    const DisabilityNameValue = DisabilityName.value.trim();
     const PhoneValue = Phone.value.trim();
     const CurrentAddressValue = CurrentAddress.value.trim();
     const EmailValue = Email.value.trim();
+
+    
 
 
     if(FirstNameValue === '') {
@@ -107,10 +117,34 @@ const validateInputs = () => {
         setSuccess(IDNumber);
     }
 
-    if(DisabilityValue === '') {
-        setError(Disability, 'Name of Disability is required');
+    if(CoursesValue === '') {
+        setError(Courses, 'Please select 1 or more course');
+     } else {
+        setSuccess(Courses);
+    }
+
+    if (DisabilityValue === '') {
+        setError(Disability, 'Please Select on of the above');
     } else {
-        setSuccess(Disability);
+        setSuccess(Disability)
+    }
+
+    if (dateInputValue === '') {
+        setError(dateInput, 'Select your date of birth');
+    } else {
+        setSuccess(dateInput)
+    }
+
+    if (genderInputValue === '') {
+        setError(genderInput, 'Select your gender');
+    } else {
+        setSuccess(genderInput)
+    }
+
+    if(DisabilityNameValue === '') {
+        setError(DisabilityName, 'Name of Disability is required');
+    } else {
+        setSuccess(DisabilityName);
     }
 
     if(PhoneValue === '') {
