@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact Us</title>
   <script src="https://kit.fontawesome.com/c32adfdcda.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="contact.css">
-  <script src="contactus.js"></script>
+  <script defer src="./contact us.js"></script> 
+ 
+ 
 
 </head>
 <body>
@@ -62,38 +64,42 @@
           </div>
         </div>
         
+        <form id="form" action="/"> 
+          
         <div class="contact-form">
-          <form id="inside-contact" action="https://formspree.io/f/mzbwdzgw" method="POST">
+          <form id="inside" action="https://formspree.io/f/mzbwdzgw" method="POST">
             <h2>Send Message</h2>
             
             <div class="input-box">
-              <input type="text" id="Event" required="true" name="Full Name" placeholder="Full Name" >
+              <input type="text" id="Name" name="Full Name" placeholder="Full Name" >
               <div class="error"></div>
             </div>
 
-
-            
+            <div class="input-box">
+              <input type="email" id="Email" name="Email" placeholder="Email">
+              <div class="error"></div>
+            </div>
             
             <div class="input-box">
-              <input type="email" required="true" name=" Email" placeholder="Email">
-              <div class="error"></div>
+              <textarea id="Message"  name="Message" placeholder="Type your message....."></textarea>
+              <div class="error"></div> 
+            </div>
+            
+            <div class="input-box">
+              <input type="submit" value="Send" name=""  >
              
             </div>
             
-            <div class="input-box">
-              <textarea required="true" name="Message" placeholder="Type your message....."></textarea>
-              
-            </div>
-            
-            <div class="input-box">
-              <input type="submit" value="Send" name="">
-            </div>
           </form>
         </div>
+        </form>
         
       </div>
     </div>
   </section>
- 
+
+  
+
+
 </body>
 </html>
